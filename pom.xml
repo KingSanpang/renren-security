@@ -287,7 +287,7 @@
 				<configuration>
 					<path>/renren-security</path>
 					<charset>UTF-8</charset>
-					<port>8080</port>
+					<port>9999</port>
 					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>
 			</plugin>
