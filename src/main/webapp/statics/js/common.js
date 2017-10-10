@@ -79,3 +79,75 @@ function getSelectedRows() {
 function isBlank(value) {
     return !value || !/\S/.test(value)
 }
+
+/**
+ * Created by Administrator on 2017-9-7.
+ */
+function myAjaxShort(url, data, type, success, beforeSend) {
+	myAjax(url, data, type, null, success, beforeSend, null, null);
+}
+function myAjax(url, data, type, contentType, success, beforeSend, complete, loadingName){
+	$.ajax({
+		type: type || 'post',
+		url: url || 'http://www.baidu.com',
+		data: data || {},
+		contentType : contentType || 'application/json',
+		beforeSend: beforeSend || function() {
+			alert('default beforeSend');
+		},
+		success: success || function(result) {
+			alert('default success');
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			myAlert("网络异常！");
+			console.log("error begin:");
+			console.log(XMLHttpRequest);
+			console.log(textStatus);
+			console.log(errorThrown);
+			console.log("error end.");
+		},
+		complete : complete || function(){
+			unloading(loadingName);
+			alert('default complete');
+		}
+	});
+}
+function myAlert(content){
+	$.alert({
+		title: '提示',
+		content: content||'提示！'
+	});
+}
+function myToast(content){
+	$.alert({
+		title: '提示',
+		content: content||'提示！',
+		backgroundDismiss: true
+		//autoClose: 'null|8000'
+	});
+}
+
+function loading(title, name){
+	$('body').loading({
+		loadingWidth:240,
+		title: title || '加载中！',
+		name: name || 'loadingName20170907',
+		animateIn:'none',
+		discription:'这是一个描述...',
+		direction:'row',
+		type:'origin',
+		mustRelative:true,
+		originBg:'#71EA71',
+		originDivWidth:30,
+		originDivHeight:30,
+		originWidth:4,
+		originHeight:4,
+		smallLoading:false,
+		titleColor:'#388E7A',
+		loadingBg:'#312923',
+		loadingMaskBg:'rgba(22,22,22,0.2)'
+	});
+}
+function unloading(name){
+	removeLoading(name || 'loadingName20170907');
+}

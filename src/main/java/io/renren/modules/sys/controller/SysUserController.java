@@ -2,6 +2,7 @@ package io.renren.modules.sys.controller;
 
 
 import io.renren.common.annotation.SysLog;
+import io.renren.modules.sys.po.SysUser;
 import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.common.utils.PageUtils;
@@ -48,7 +49,7 @@ public class SysUserController extends AbstractController {
 		int total = sysUserService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(userList, total, query.getLimit(), query.getPage());
-		
+
 		return R.ok().put("page", pageUtil);
 	}
 	
@@ -108,6 +109,15 @@ public class SysUserController extends AbstractController {
 		
 		sysUserService.save(user);
 		
+		return R.ok();
+	}
+	@SysLog("注册用户")
+	@RequestMapping("/register")
+	public R register(@RequestBody SysUser user){
+		ValidatorUtils.validateEntity(user, AddGroup.class);
+
+		//sysUserService.save(user);
+
 		return R.ok();
 	}
 	

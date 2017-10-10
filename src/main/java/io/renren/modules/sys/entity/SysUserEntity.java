@@ -69,6 +69,10 @@ public class SysUserEntity implements Serializable {
 	 * 创建时间
 	 */
 	private Date createTime;
+	/**
+	 * 0：管理员；1：老板；2：员工
+	 */
+	private String userType;
 
 	/**
 	 * 部门ID
@@ -185,9 +189,18 @@ public class SysUserEntity implements Serializable {
 		this.createTime = createTime;
 	}
 
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
 	/**
 	 * 获取：创建时间
 	 * @return Date
+
 	 */
 	public Date getCreateTime() {
 		return createTime;
