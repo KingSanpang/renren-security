@@ -111,6 +111,12 @@ public class SysUserController extends AbstractController {
 		
 		return R.ok();
 	}
+
+	@RequestMapping("/register")
+	public String gotoRegister(){
+		return "forward:login.html";
+	}
+
 	@SysLog("注册用户")
 	@RequestMapping("/register")
 	public R register(@RequestBody SysUser user){

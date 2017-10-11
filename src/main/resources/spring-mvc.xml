@@ -39,7 +39,7 @@
         </mvc:message-converters>
 	</mvc:annotation-driven>
 
-	<!-- FreeMarker视图解析器     默认视图 -->
+	<!-- FreeMarker视图解析器     默认视图-->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
 		<property name="contentType" value="text/html; charset=utf-8"/>
@@ -47,7 +47,7 @@
 		<property name="cache" value="false"/>
 		<property name="viewNames" value="*.html" />
 		<property name="suffix" value=""/>
-		<property name="order" value="0"/>
+		<property name="order" value="2"/>
 	</bean>
 
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
@@ -58,8 +58,8 @@
 			</map>
 		</property>
 	</bean>
-	
-	<!-- JSP视图解析器  -->
+
+	<!-- JSP视图解析器-->
     <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -67,7 +67,7 @@
         <property name="suffix" value=""/>
         <property name="order" value="1"/>
     </bean>
-	
+
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="1000000000" />
