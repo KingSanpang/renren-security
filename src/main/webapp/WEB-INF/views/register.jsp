@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%@ include file= "/WEB-INF/jsp/common/include.jsp" %>
+    <%@ include file= "./common/include.jsp" %>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>注册</title>
 </head>
@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h3>用户注册</h3>
+            <h1>用户注册</h1>
         </div>
     </div>
     <div class="row">

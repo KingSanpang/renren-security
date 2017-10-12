@@ -18,6 +18,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -112,13 +113,13 @@ public class SysUserController extends AbstractController {
 		return R.ok();
 	}
 
-	@RequestMapping("/register")
-	public String gotoRegister(){
-		return "forward:login.html";
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView gotoRegister(){
+		return new ModelAndView("register.jsp");
 	}
 
 	@SysLog("注册用户")
-	@RequestMapping("/register")
+	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public R register(@RequestBody SysUser user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
 
