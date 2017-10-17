@@ -1,7 +1,10 @@
 package io.renren.modules.sys.controller;
 
 
+import com.baidu.unbiz.fluentvalidator.ComplexResult;
+import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import io.renren.common.annotation.SysLog;
+import io.renren.common.validator.NotNullValidator;
 import io.renren.modules.sys.po.SysUser;
 import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
@@ -14,6 +17,7 @@ import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.UpdateGroup;
 import io.renren.modules.sys.service.SysUserRoleService;
 import io.renren.modules.sys.service.SysUserService;
+import io.renren.modules.sys.validator.SysUserValidator;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,13 +122,14 @@ public class SysUserController extends AbstractController {
 		return new ModelAndView("register.jsp");
 	}
 
-	@SysLog("注册用户")
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public R register(@RequestBody SysUser user){
-		ValidatorUtils.validateEntity(user, AddGroup.class);
-
+		logger.info("register user = {}", user.toString());
+		ComplexResult validateRes = SysUserValidator.validateAddSysUser(user);
+		if (!validateRes.isSuccess()) {
+			return R.error(validateRes.getErrors());
+		}
 		//sysUserService.save(user);
-
 		return R.ok();
 	}
 	

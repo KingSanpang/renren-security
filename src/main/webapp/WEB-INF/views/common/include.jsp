@@ -8,7 +8,7 @@ String basePath = request.getContextPath();
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%//@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<!-- Bootstrap -->
+<!-- Bootstrap-->
 <link href="<%=basePath%>/statics/plugins/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,10 +24,8 @@ String basePath = request.getContextPath();
 <script src="<%=basePath%>/statics/plugins/bootstrap-table/bootstrap-table.min.js"></script>
 <script src="<%=basePath%>/statics/plugins/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
 <script src="<%=basePath%>/statics/libs/jquery.bootstrap.min.js"></script>
-<link rel="stylesheet" href="<%=basePath%>/js/jquery-confirm-3.3/jquery-confirm.min.css">
+<link rel="stylesheet" href="<%=basePath%>/statics/plugins/jquery-confirm-3.3/jquery-confirm.min.css">
 <script src="<%=basePath%>/statics/plugins/jquery-confirm-3.3/jquery-confirm.min.js"></script>
-<link rel="stylesheet" href="<%=basePath%>/statics/plugins/loading/loading.css">
-<script src="<%=basePath%>/statics/plugins/loading/loading.js"></script>
 <script src="<%=basePath%>/statics/js/common.js"></script>
 <script src="<%=basePath%>/statics/plugins/serializeJson/jquery.serializejson.min.js"></script>
 <link rel="stylesheet" href="<%=basePath%>/statics/css/common/common.css">

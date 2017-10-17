@@ -37,6 +37,7 @@
 		<taglibs-version>1.1.2</taglibs-version>
 		<freemarker-version>2.3.23</freemarker-version>
 		<mybatis-generator.version>1.3.2</mybatis-generator.version>
+		<fluent-validator-version>1.0.6</fluent-validator-version>
 		<!--  Java接口和实体类  -->
 		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
 		<!-- mapper和po生成路径,需要手动指定-->
@@ -259,6 +260,12 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>${freemarker-version}</version>
+		</dependency>
+		<!-- fluent-validator -->
+		<dependency>
+			<groupId>com.baidu.unbiz</groupId>
+			<artifactId>fluent-validator</artifactId>
+			<version>${fluent-validator-version}</version>
 		</dependency>
 	</dependencies>
 

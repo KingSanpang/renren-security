@@ -3,6 +3,7 @@ package io.renren.modules.sys.service;
 
 
 import io.renren.modules.sys.entity.SysUserEntity;
+import io.renren.modules.sys.po.SysUser;
 
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,11 @@ public interface SysUserService {
 	 * 保存用户
 	 */
 	void save(SysUserEntity user);
+
+	/**
+	 * 用户注册
+     */
+	void register(SysUser user);
 	
 	/**
 	 * 修改用户

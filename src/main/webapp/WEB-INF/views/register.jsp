@@ -40,13 +40,13 @@
                 <div class="form-group">
                     <label for="password" class="col-lg-2 control-label">密码：</label>
                     <div class="col-lg-10">
-                        <input id="password" type="text" autocomplete="off" class="form-control" name="password" maxlength="20"/>
+                        <input id="password" type="password" autocomplete="off" class="form-control" name="password" maxlength="20"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password2" class="col-lg-2 control-label">确认密码：</label>
                     <div class="col-lg-10">
-                        <input id="password2" type="text" autocomplete="off" class="form-control" name="password2" maxlength="20"/>
+                        <input id="password2" type="password" autocomplete="off" class="form-control" name="password2" maxlength="20"/>
                     </div>
                 </div>
                 <div class="form-group">

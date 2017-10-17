@@ -1,6 +1,10 @@
 package io.renren.common.utils;
 
+import com.baidu.unbiz.fluentvalidator.ValidationError;
+
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +34,18 @@ public class R extends HashMap<String, Object> {
 		R r = new R();
 		r.put("code", code);
 		r.put("msg", msg);
+		return r;
+	}
+	public static R error(List<ValidationError> errors) {
+		R r = new R();
+		if(errors == null || errors.size() == 0){
+			r.put("code", "-1");
+			r.put("msg", "未知异常");
+			return r;
+		}else{
+			r.put("code", errors.get(0).getErrorCode());
+			r.put("msg", errors.get(0).getErrorMsg());
+		}
 		return r;
 	}
 
