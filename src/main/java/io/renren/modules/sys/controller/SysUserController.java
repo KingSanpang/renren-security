@@ -129,7 +129,7 @@ public class SysUserController extends AbstractController {
 		if (!validateRes.isSuccess()) {
 			return R.error(validateRes.getErrors());
 		}
-		//sysUserService.save(user);
+		sysUserService.register(user);
 		return R.ok();
 	}
 	

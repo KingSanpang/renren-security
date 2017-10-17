@@ -65,6 +65,9 @@ public class SysUserServiceImpl implements SysUserService {
 		user.setMobile(user.getUsername());
 		user.setStatus(CommonConstants.STATUS.NORMAL.getValue());
 	}
+	private SysUser queryByUser(SysUser user){
+
+	}
 
 	@Override
 	public List<String> queryAllPerms(Long userId) {
