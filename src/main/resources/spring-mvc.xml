@@ -15,6 +15,7 @@
 
 	<context:component-scan base-package="io.renren" />
 	<context:annotation-config />
+	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
 	<mvc:default-servlet-handler />
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 	<mvc:annotation-driven>

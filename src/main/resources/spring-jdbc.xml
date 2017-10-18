@@ -13,7 +13,6 @@
 		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<tx:annotation-driven />
-	<context:property-placeholder location="classpath:db.properties,classpath:config.properties" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
@@ -82,6 +81,6 @@
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="io.renren.modules.*.dao" />
+		<property name="basePackage" value="io.renren.modules.*.dao,io.renren.modules.*.mapper" />
 	</bean>
 </beans>

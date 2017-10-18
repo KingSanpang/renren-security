@@ -17,10 +17,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ConfigConstants {
-    @Value("#{common.user.dept}")
+    @Value("${common.user.dept}")
     private long commonUserDept;
-    @Value("#{common.user.role}")
+    @Value("${common.user.role}")
     private long commonUserRole;
+    @Value("${boss.user.role}")
+    private long bossUserRole;
+
+    public long getBossUserRole() {
+        return bossUserRole;
+    }
+
+    public void setBossUserRole(long bossUserRole) {
+        this.bossUserRole = bossUserRole;
+    }
 
     public long getCommonUserDept() {
         return commonUserDept;

@@ -2,6 +2,7 @@ package io.renren.modules.sys.service;
 
 
 
+import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.po.SysUser;
 
@@ -59,7 +60,7 @@ public interface SysUserService {
 	/**
 	 * 用户注册
      */
-	void register(SysUser user);
+	R register(SysUser user);
 	
 	/**
 	 * 修改用户

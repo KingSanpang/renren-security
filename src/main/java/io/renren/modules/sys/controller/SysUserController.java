@@ -125,12 +125,23 @@ public class SysUserController extends AbstractController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public R register(@RequestBody SysUser user){
 		logger.info("register user = {}", user.toString());
+		R r;
 		ComplexResult validateRes = SysUserValidator.validateAddSysUser(user);
 		if (!validateRes.isSuccess()) {
 			return R.error(validateRes.getErrors());
 		}
-		sysUserService.register(user);
-		return R.ok();
+		try{
+			r = sysUserService.register(user);
+			if(r != null){
+				return r;
+			}else{
+				r = R.ok();
+			}
+		}catch (Exception e){
+			logger.error("SysUserController.register error", e);
+			r = R.error("注册发生异常！");
+		}
+		return r;
 	}
 	
 	/**

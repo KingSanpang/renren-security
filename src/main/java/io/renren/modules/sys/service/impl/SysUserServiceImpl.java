@@ -4,9 +4,12 @@ package io.renren.modules.sys.service.impl;
 import io.renren.common.annotation.DataFilter;
 import io.renren.common.constant.CommonConstants;
 import io.renren.common.constant.ConfigConstants;
+import io.renren.common.constant.ErrorConstants;
+import io.renren.common.utils.R;
 import io.renren.modules.sys.constant.SysUserConstants;
 import io.renren.modules.sys.mapper.SysUserMapper;
 import io.renren.modules.sys.po.SysUser;
+import io.renren.modules.sys.po.SysUserExample;
 import io.renren.modules.sys.shiro.ShiroUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.dao.SysUserDao;
@@ -40,7 +43,11 @@ public class SysUserServiceImpl implements SysUserService {
 	private ConfigConstants configConstants;
 
 	@Override
-	public void register(SysUser user) {
+	public R register(SysUser user) {
+		SysUser tempUser = this.queryByUserNameAndStatus(user);
+		if(tempUser != null){
+			return R.error(ErrorConstants.USER_ERROR.USERNAME_EXIST_ERROR, "用户名已经存在！");
+		}
 		user.setCreateTime(new Date());
 		//sha256加密
 		String salt = RandomStringUtils.randomAlphanumeric(20);
@@ -48,11 +55,16 @@ public class SysUserServiceImpl implements SysUserService {
 		user.setPassword(ShiroUtils.sha256(user.getPassword(), user.getSalt()));
 		this.initCommonUserInfo(user);
 		sysUserMapper.insert(user);
-		//保存用户与角色关系
-		List<Long> userRoleList = new ArrayList<Long>(){{
-			add(configConstants.getCommonUserRole());
-		}};
+		List<Long> userRoleList = new ArrayList<Long>();
+		if(user.getUserType().equals(SysUserConstants.USER_TYPE.BOSS)){
+			//保存用户与角色关系
+			 userRoleList.add(configConstants.getBossUserRole());
+		}else{//员工
+			//保存用户与角色关系
+			userRoleList.add(configConstants.getCommonUserRole());
+		}
 		sysUserRoleService.saveOrUpdate(user.getUserId(), userRoleList);
+		return null;
 	}
 
 	/**
@@ -61,12 +73,14 @@ public class SysUserServiceImpl implements SysUserService {
      */
 	private void initCommonUserInfo(SysUser user){
 		user.setDeptId(configConstants.getCommonUserDept());
-		user.setUserType(SysUserConstants.USER_TYPE.EMPLOYEE.getValue());
 		user.setMobile(user.getUsername());
 		user.setStatus(CommonConstants.STATUS.NORMAL.getValue());
 	}
-	private SysUser queryByUser(SysUser user){
-
+	private SysUser queryByUserNameAndStatus(SysUser user){
+		SysUserExample example = new SysUserExample();
+		example.createCriteria().andUsernameEqualTo(user.getUsername()).andStatusNotEqualTo(CommonConstants.STATUS.DELETED.getValue());
+		List<SysUser> users = sysUserMapper.selectByExample(example);
+		return users.isEmpty() ? null : users.get(0);
 	}
 
 	@Override
