@@ -1,12 +1,19 @@
 package io.renren.common.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,6 +25,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class RedisUtils {
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private RedisTemplate redisTemplate;
     @Resource(name="redisTemplate")
@@ -53,6 +62,23 @@ public class RedisUtils {
             redisTemplate.expire(key, expire, TimeUnit.SECONDS);
         }
         return value == null ? null : fromJson(value, clazz);
+    }
+
+    /**
+     * 获取数组
+     * @param key
+     * @param clazz
+     * @param <T>
+     * @return null or array
+     */
+    public <T> List<T> getList(String key, Class<T> clazz, Type type){
+        String res = valueOperations.get(key);
+        if(StringUtils.isBlank(res)){
+            return null;
+        }
+        List<T> rs=new ArrayList<T>();
+        rs=gson.fromJson(res, type);
+        return rs;
     }
 
     public <T> T get(String key, Class<T> clazz) {

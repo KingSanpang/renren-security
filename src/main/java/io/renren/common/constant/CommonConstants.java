@@ -12,9 +12,13 @@ package io.renren.common.constant;
  * @author Administrator
  */
 public class CommonConstants {
+    public static String REDIS_KEY_MENU = "menu_list_%s";//menu_list_menuid
+
     public enum STATUS {
-        //删除、禁用、正常
-        DELETED((byte)-1), FORBIDDEN((byte)0), NORMAL((byte)1);
+        DELETED((byte)-1),//删除
+        FORBIDDEN((byte)0),//禁用
+        NORMAL((byte)1),//正常，允许
+        AUDITING((byte)2);//审核中
 
         private byte value;
         STATUS(byte value) {

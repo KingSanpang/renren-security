@@ -41,11 +41,11 @@
 		<!--  Java接口和实体类  -->
 		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
 		<!-- mapper和po生成路径,需要手动指定-->
-		<targetMapperPackage>io.renren.modules.sys.mapper</targetMapperPackage>
-		<targetModelPackage>io.renren.modules.sys.po</targetModelPackage>
+		<targetMapperPackage>io.renren.modules.sms.mapper</targetMapperPackage>
+		<targetModelPackage>io.renren.modules.sms.po</targetModelPackage>
 		<!--  XML生成路径,需要手动指定mapper路径  -->
 		<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
-		<targetXMLPackage>mapper/sys</targetXMLPackage>
+		<targetXMLPackage>mapper/sms</targetXMLPackage>
 	</properties>
 	
 	<!-- 阿里云maven仓库 -->

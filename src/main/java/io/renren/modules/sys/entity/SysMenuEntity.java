@@ -193,4 +193,21 @@ public class SysMenuEntity implements Serializable {
 	public void setOpen(Boolean open) {
 		this.open = open;
 	}
+
+	@Override
+	public String toString() {
+		return "SysMenuEntity{" +
+				"menuId=" + menuId +
+				", parentId=" + parentId +
+				", parentName='" + parentName + '\'' +
+				", name='" + name + '\'' +
+				", url='" + url + '\'' +
+				", perms='" + perms + '\'' +
+				", type=" + type +
+				", icon='" + icon + '\'' +
+				", orderNum=" + orderNum +
+				", open=" + open +
+				", list=" + list +
+				'}';
+	}
 }

@@ -58,8 +58,8 @@
     <!--<table tableName="CFG_ROLE_SG_RELA" >-->
       <!--&lt;!&ndash;<generatedKey column="skill_group_id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;-->
     <!--</table>-->
-    <table tableName="sys_user" >
-      <generatedKey column="user_id" sqlStatement="Mysql" identity="true"/>
+    <table tableName="sms_hangup" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>
 </generatorConfiguration>
