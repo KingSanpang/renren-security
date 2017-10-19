@@ -15,8 +15,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%=basePath%>/manage/ent/gotoUpdate">企业信息<span class="sr-only">(current)</span></a></li>
-        <li><a href="<%=basePath%>/manage/signature/gotoUpdate">短信策略</a></li>
+        <c:forEach var ="menu" items="${menus}" varStatus="status">
+            <c:choose>
+                <c:when test="${fn:contains(menu.url, curMenu)}">
+                    <li class="active"><a href="<%=basePath%>${menu.url}">${menu.name}<span class="sr-only">(current)</span></a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="<%=basePath%>${menu.url}">${menu.name}</a></li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">

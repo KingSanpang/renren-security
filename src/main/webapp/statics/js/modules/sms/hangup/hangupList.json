@@ -1,0 +1,24 @@
+{
+  "code": 1,
+  "message": "成功",
+  "data": [
+    {
+      "id": 1,
+      "agentTel": "123",
+      "beginTime": 720,
+      "endTime": 840,
+      "type": "1",
+      "rate":"2",
+      "content":"您好，刚刚到店的猪头肉新鲜，价廉。"
+    },
+    {
+      "id": 2,
+      "agentTel": "123",
+      "beginTime": 1080,
+      "endTime": 1140,
+      "type": "1",
+      "rate":"3",
+      "content":"下午好，五点之后猪头肉五折优惠。"
+    }
+  ]
+}

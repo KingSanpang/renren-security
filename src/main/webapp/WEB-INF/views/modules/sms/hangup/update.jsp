@@ -8,8 +8,9 @@
     <%@ include file= "/WEB-INF/views/common/include.jsp" %>
     <title>修改挂短策略</title>
   </head>
-  <script src="<%=basePath%>/js/manage/hangup/update.js"></script>
-  <link href="<%=basePath%>/css/manage/hangup/update.css" rel="stylesheet" type="text/css" />
+  <script src="<%=basePath%>/statics/js/modules/sms/hangup/update.js"></script>
+
+  <link href="<%=basePath%>/statics/css/modules/sms/hangup/update.css" rel="stylesheet" type="text/css" />
   <body>
   <div class="container">
       <div class="row">

@@ -46,7 +46,7 @@ public class SmsHangupController extends AbstractController {
 		ModelAndView mav = new ModelAndView();
 		List<SysMenuEntity> menus = MenuUtils.getMenuListInRedis(getUserId());
 		mav.addObject("menus", menus);
-		mav.addObject("curMenu", "hangup");//当前菜单
+		mav.addObject("curMenu", "sms/hangup/gotoUpdate");//当前菜单
 
 		mav.setViewName("/modules/sms/hangup/update.jsp");
 		return mav;

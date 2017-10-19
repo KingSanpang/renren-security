@@ -1,0 +1,13 @@
+.scale_left{
+    background:#ffffff;
+    border-right:thin solid #000000;
+    border-left:thin solid #000000;
+    border-bottom:thin solid #000000;
+    float:left;font-size:10px;width:10%;height:12px;padding-right:2px;box-sizing: border-box;text-align:right;
+}
+.scale{
+    background:#ffffff;
+    border-right:thin solid #000000;
+    border-bottom:thin solid #000000;
+    float:left;font-size:10px;width:10%;height:12px;padding-right:2px;box-sizing: border-box;text-align:right;
+}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,35 +20,33 @@ import java.util.List;
  * @date 2016年11月24日 下午11:05:27
  */
 @Controller
-public class SysPageController extends AbstractController{
+public class SysPageController extends AbstractController {
 	@Autowired
 	private SysMenuService sysMenuService;
-	
+
 	@RequestMapping("modules/{module}/{url}.html")
-	public String module(@PathVariable("module") String module, @PathVariable("url") String url){
+	public String module(@PathVariable("module") String module, @PathVariable("url") String url) {
 		return "modules/" + module + "/" + url + ".html";
 	}
 
 	@RequestMapping("{url}.html")
-	public String url(@PathVariable("url") String url){
+	public String url(@PathVariable("url") String url) {
 		return url + ".html";
 	}
 
 	@RequestMapping("/")
-	public String index(){
+	public String index() {
 		return "index.html";
 	}
 
 	@RequestMapping("/gotoIndex")
-	public ModelAndView gotoIndex(){
+	public ModelAndView gotoIndex() {
 		ModelAndView mav = new ModelAndView();
 		Long userId = getUserId();
 		List<SysMenuEntity> menuList = MenuUtils.getMenuListInRedis(userId);
 		SysMenuEntity first = menuList.get(0);
 		String url = first.getUrl();
-		logger.debug("gotoIndex redirect = " + "redirect:" + url);
-//		mav.setViewName("redirect:" + url);
-		mav.setViewName("forward:" + url);
+		mav.setView(new RedirectView(url.substring(1)));
 		return mav;
 	}
 }
