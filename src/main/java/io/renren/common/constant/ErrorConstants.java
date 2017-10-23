@@ -15,5 +15,6 @@ public class ErrorConstants {
     //用户相关，10开头
     public static class USER_ERROR{
         public static final int USERNAME_EXIST_ERROR = 100001;//用户名已经存在
+        public static final int USERNAME_NOT_EXIST_ERROR = 100002;//用户名不存在
     }
 }

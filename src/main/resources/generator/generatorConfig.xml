@@ -58,7 +58,7 @@
     <!--<table tableName="CFG_ROLE_SG_RELA" >-->
       <!--&lt;!&ndash;<generatedKey column="skill_group_id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;-->
     <!--</table>-->
-    <table tableName="sms_hangup" >
+    <table tableName="sms_boss_employee_rela" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>

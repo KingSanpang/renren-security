@@ -23,20 +23,52 @@
               <table class="table table-bordered">
                   <tr>
                       <td><label>您的身份：</label></td>
-                      <td>老板</td>
+                      <td>
+                          <c:if test="${user.userType eq '1'}">
+                            老板
+                          </c:if>
+                          <c:if test="${user.userType eq '2'}">
+                            员工
+                          </c:if>
+                      </td>
                   </tr>
                   <tr>
                       <td><label>手机号：</label></td>
-                      <td>15111112222</td>
+                      <td>
+                        ${user.username}
+                      </td>
                   </tr>
+                  <c:if test="${user.userType eq '2'}">
                   <tr>
                       <td><label>老板号：</label></td>
-                      <td>15100003333<span class="label label-primary">审核中</span></td>
+                      <td id="bossTelTd">
+                        <c:if test="${bossRela == null}">
+                            <span onclick="changeBossTel()" class="label label-danger">设置老板号</span>
+                        </c:if>
+                        <c:if test="${bossRela!=null && bossRela.status eq 1}">
+                            ${bossRela.bossTel}<span class="label label-primary">审核通过</span>
+                        </c:if>
+                        <c:if test="${bossRela!=null && bossRela.status eq 2}">
+                            ${bossRela.bossTel}
+                            &ensp;&ensp;
+                            <span class="label label-primary">审核中</span>
+                            &ensp;&ensp;
+                            <span onclick="changeBossTel()" class="label label-danger">更改老板号</span>
+                        </c:if>
+                      </td>
                   </tr>
                   <tr>
                       <td><label>自定义短信签名：</label></td>
-                      <td><span class="label label-primary">禁止</span></td>
+                      <td>
+                        <c:if test="${bossRela!=null && bossRela.setHangup eq 1}">
+                            <span class="label label-primary">允许</span>
+                        </c:if>
+                        <c:if test="${null==bossRela||bossRela.setHangup eq 0}">
+                            <span class="label label-primary">禁止</span>
+                        </c:if>
+                      </td>
                   </tr>
+                  </c:if>
                   <tr>
                       <td><label>密码：</label></td>
                       <td><span onclick="changePwd()" class="label label-danger">修改密码</span></td>
