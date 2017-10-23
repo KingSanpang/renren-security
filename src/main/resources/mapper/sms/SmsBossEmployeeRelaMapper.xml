@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="io.renren.modules.sms.mapper.SmsBossEmployeeRelaMapper" >
+  <resultMap id="BaseResultMap" type="io.renren.modules.sms.po.SmsBossEmployeeRela" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="boss_id" property="bossId" jdbcType="BIGINT" />
+    <result column="boss_tel" property="bossTel" jdbcType="VARCHAR" />
+    <result column="employee_id" property="employeeId" jdbcType="BIGINT" />
+    <result column="employee_name" property="employeeName" jdbcType="VARCHAR" />
+    <result column="set_hangup" property="setHangup" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, boss_id, boss_tel, employee_id, employee_name, set_hangup, status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRelaExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sms_boss_employee_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sms_boss_employee_rela
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sms_boss_employee_rela
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRelaExample" >
+    delete from sms_boss_employee_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRela" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_boss_employee_rela (boss_id, boss_tel, employee_id, 
+      employee_name, set_hangup, status
+      )
+    values (#{bossId,jdbcType=BIGINT}, #{bossTel,jdbcType=VARCHAR}, #{employeeId,jdbcType=BIGINT}, 
+      #{employeeName,jdbcType=VARCHAR}, #{setHangup,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRela" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sms_boss_employee_rela
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bossId != null" >
+        boss_id,
+      </if>
+      <if test="bossTel != null" >
+        boss_tel,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="employeeName != null" >
+        employee_name,
+      </if>
+      <if test="setHangup != null" >
+        set_hangup,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bossId != null" >
+        #{bossId,jdbcType=BIGINT},
+      </if>
+      <if test="bossTel != null" >
+        #{bossTel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeName != null" >
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="setHangup != null" >
+        #{setHangup,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRelaExample" resultType="java.lang.Integer" >
+    select count(*) from sms_boss_employee_rela
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sms_boss_employee_rela
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bossId != null" >
+        boss_id = #{record.bossId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bossTel != null" >
+        boss_tel = #{record.bossTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeId != null" >
+        employee_id = #{record.employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.employeeName != null" >
+        employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setHangup != null" >
+        set_hangup = #{record.setHangup,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sms_boss_employee_rela
+    set id = #{record.id,jdbcType=BIGINT},
+      boss_id = #{record.bossId,jdbcType=BIGINT},
+      boss_tel = #{record.bossTel,jdbcType=VARCHAR},
+      employee_id = #{record.employeeId,jdbcType=BIGINT},
+      employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      set_hangup = #{record.setHangup,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRela" >
+    update sms_boss_employee_rela
+    <set >
+      <if test="bossId != null" >
+        boss_id = #{bossId,jdbcType=BIGINT},
+      </if>
+      <if test="bossTel != null" >
+        boss_tel = #{bossTel,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=BIGINT},
+      </if>
+      <if test="employeeName != null" >
+        employee_name = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="setHangup != null" >
+        set_hangup = #{setHangup,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.renren.modules.sms.po.SmsBossEmployeeRela" >
+    update sms_boss_employee_rela
+    set boss_id = #{bossId,jdbcType=BIGINT},
+      boss_tel = #{bossTel,jdbcType=VARCHAR},
+      employee_id = #{employeeId,jdbcType=BIGINT},
+      employee_name = #{employeeName,jdbcType=VARCHAR},
+      set_hangup = #{setHangup,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
