@@ -151,6 +151,39 @@ public class SmsUserController extends AbstractController {
 		return r;
 	}
 
+	@RequestMapping(value="changeSetHangup", method=RequestMethod.POST)
+	@RequiresPermissions("sms:user:changeSetHangup")
+	public R changeSetHangup(@RequestBody SmsBossEmployeeRelaDto relaDto){
+		R r;
+		relaDto.setBossId(getUserId());
+		try{
+			r = smsUserService.changeSetHangup(relaDto);
+			if(r == null){
+				r = R.ok();
+			}
+		}catch (Exception e){
+			logger.error("changeSetHangup error:", e);
+			r = R.error("修改出现异常！");
+		}
+		return r;
+	}
+	@RequestMapping(value="changeStatus", method=RequestMethod.POST)
+	@RequiresPermissions("sms:user:changeStatus")
+	public R changeStatus(@RequestBody SmsBossEmployeeRelaDto relaDto){
+		R r;
+		relaDto.setBossId(getUserId());
+		try{
+			r = smsUserService.changeStatus(relaDto);
+			if(r == null){
+				r = R.ok();
+			}
+		}catch (Exception e){
+			logger.error("changeStatus error:", e);
+			r = R.error("修改出现异常！");
+		}
+		return r;
+	}
+
 
 
 

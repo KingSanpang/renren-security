@@ -29,8 +29,8 @@
       </div>
       <div class="row">
           <div class="col-lg-12">
-            <table id="employeeTable">
-            </table>
+            <br>
+            <table id="employeeTable"></table>
           </div>
       </div>
   </div>

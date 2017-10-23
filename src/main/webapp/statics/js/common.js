@@ -33,7 +33,6 @@ function myAjax(url, data, type, contentType, success, beforeSend, complete, loa
 	});
 }
 function myAlert(content){
-	console.log(content);
 	$.alert({
 		title: '提示',
 		content: content||'提示！'
@@ -62,6 +61,35 @@ function unloading(name){
 	var loadingName = name || 'loadingName20170907';
 	window.loadingName.close();
 }
+function myConfirm(msg, callback){
+	$.confirm({
+		title:'提示',
+		content:msg,
+		buttons: {
+			ok: {
+				text:"确定",
+				action:function(){
+					callback();
+				}
+			},
+			cancel: {
+				text: '取消',
+				action: function () {
+				}
+			}
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
 //jqGrid的配置信息
 $.jgrid.defaults.width = 1000;
 $.jgrid.defaults.responsive = true;
@@ -99,15 +127,6 @@ window.alert = function(msg, callback){
 	});
 }
 
-//重写confirm式样框
-window.confirm = function(msg, callback){
-	parent.layer.confirm(msg, {btn: ['确定','取消']},
-		function(){//确定事件
-			if(typeof(callback) === "function"){
-				callback("ok");
-			}
-		});
-}
 
 //选择一条记录
 function getSelectedRow() {

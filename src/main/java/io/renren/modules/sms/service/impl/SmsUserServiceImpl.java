@@ -14,6 +14,7 @@ import io.renren.modules.sms.service.SmsUserService;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.po.SysUser;
 import io.renren.modules.sys.service.SysUserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,8 +73,12 @@ public class SmsUserServiceImpl implements SmsUserService {
     @Override
     public List<SmsBossEmployeeRela> queryEmployeeList(SmsBossEmployeeRela rela, PageInfo pageInfo) {
         SmsBossEmployeeRelaExample example = new SmsBossEmployeeRelaExample();
-        example.createCriteria().andStatusNotEqualTo(CommonConstants.STATUS.DELETED.getValue())
+        SmsBossEmployeeRelaExample.Criteria criteria = example.createCriteria();
+        criteria.andStatusNotEqualTo(CommonConstants.STATUS.DELETED.getValue())
                 .andBossIdEqualTo(rela.getBossId());
+        if(StringUtils.isNotBlank(rela.getEmployeeName())){
+            criteria.andEmployeeNameLike(rela.getEmployeeName() + "%");
+        }
         PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
         List<SmsBossEmployeeRela> employees = smsBossEmployeeRelaMapper.selectByExample(example);
         return employees;
@@ -95,5 +100,43 @@ public class SmsUserServiceImpl implements SmsUserService {
     }
     private SmsBossEmployeeRela queryById(long id){
         return smsBossEmployeeRelaMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public R changeSetHangup(SmsBossEmployeeRelaDto relaDto) {
+        SmsBossEmployeeRela oldRela = queryById(relaDto.getId());
+        if(oldRela == null || !oldRela.getBossId().equals(relaDto.getBossId())){
+            return R.error("记录不存在！");
+        }
+        byte newValue = 0;
+        if(oldRela.getSetHangup().equals(CommonConstants.STATUS.FORBIDDEN.getValue())){
+            newValue = 1;
+        }
+        SmsBossEmployeeRela updateRela = new SmsBossEmployeeRela();
+        updateRela.setSetHangup(newValue);
+        updateRela.setId(relaDto.getId());
+        int count = smsBossEmployeeRelaMapper.updateByPrimaryKeySelective(updateRela);
+        if(count > 0){
+            return null;
+        }else{
+            return R.error("记录不存在！");
+        }
+    }
+
+    @Override
+    public R changeStatus(SmsBossEmployeeRelaDto relaDto) {
+        SmsBossEmployeeRela oldRela = queryById(relaDto.getId());
+        if(oldRela == null || !oldRela.getBossId().equals(relaDto.getBossId()) || oldRela.getStatus().equals(CommonConstants.STATUS.DELETED.getValue())){
+            return R.error("记录不存在！");
+        }
+        SmsBossEmployeeRela updateRela = new SmsBossEmployeeRela();
+        updateRela.setId(relaDto.getId());
+        updateRela.setStatus(relaDto.getStatus());
+        int count = smsBossEmployeeRelaMapper.updateByPrimaryKeySelective(updateRela);
+        if(count > 0){
+            return null;
+        }else{
+            return R.error("记录不存在！");
+        }
     }
 }

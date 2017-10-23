@@ -9,6 +9,7 @@ import io.renren.modules.sms.dto.SmsBossEmployeeRelaDto;
 import io.renren.modules.sms.po.SmsBossEmployeeRela;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.po.SysUser;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Map;
@@ -41,4 +42,18 @@ public interface SmsUserService {
 	 * @return
      */
 	R deleteEmployee(SmsBossEmployeeRelaDto relaDto);
+
+	/**
+	 * 修改员工是否有挂短权限
+	 * @param relaDto
+	 * @return
+     */
+	R changeSetHangup(SmsBossEmployeeRelaDto relaDto);
+
+	/**
+	 * 修改员工状态
+	 * @param relaDto
+	 * @return
+     */
+	R changeStatus(SmsBossEmployeeRelaDto relaDto);
 }
