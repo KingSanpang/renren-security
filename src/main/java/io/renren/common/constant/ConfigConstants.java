@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
  * <dt>ConfigConstants</dt>
  * <dd>Description:映射配置文件config.properties</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-17</dd>
  * </dl>
  *

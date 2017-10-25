@@ -5,14 +5,16 @@ package io.renren.common.constant;
  * <dt>CommonConstants</dt>
  * <dd>Description:公共的常亮</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-17</dd>
  * </dl>
  *
  * @author Administrator
  */
 public class CommonConstants {
-    public static String REDIS_KEY_MENU = "menu_list_%s";//menu_list_menuid
+    //redis
+    public static final String REDIS_KEY_MENU = "menu_list_%s";//menu_list_menuid
+    //mobile auth
+    public static final String MOBILE_AUTH_HEADER_KEY = "MOBILESIGN";
 
     public enum STATUS {
         DELETED((byte)-1),//删除

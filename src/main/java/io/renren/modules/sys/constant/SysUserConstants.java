@@ -5,7 +5,6 @@ package io.renren.modules.sys.constant;
  * <dt>SysUserConstants</dt>
  * <dd>Description:用户常量类</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-13</dd>
  * </dl>
  *

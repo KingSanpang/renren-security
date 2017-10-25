@@ -25,7 +25,6 @@ import java.util.List;
  * <dt>SmsUserServiceImpl</dt>
  * <dd>Description:sms用户service</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-20</dd>
  * </dl>
  *

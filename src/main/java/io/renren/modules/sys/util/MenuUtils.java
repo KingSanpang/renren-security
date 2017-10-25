@@ -20,7 +20,6 @@ import java.util.List;
  * <dt>UserUtils</dt>
  * <dd>Description:用户的工具类</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-18</dd>
  * </dl>
  *

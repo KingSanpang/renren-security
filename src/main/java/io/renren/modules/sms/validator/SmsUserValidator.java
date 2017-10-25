@@ -14,7 +14,6 @@ import io.renren.modules.sys.po.SysUser;
  * <dt>SysUserValidator</dt>
  * <dd>Description:smsUser相关的校验</dd>
  * <dd>Copyright: Copyright (C) 2006</dd>
- * <dd>Company: 青牛（北京）技术有限公司</dd>
  * <dd>CreateDate: 2017-10-13</dd>
  * </dl>
  *

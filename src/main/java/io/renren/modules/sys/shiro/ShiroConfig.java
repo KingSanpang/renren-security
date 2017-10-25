@@ -59,15 +59,19 @@ public class ShiroConfig {
         shiroFilter.setUnauthorizedUrl("/");
 
         Map<String, String> filterMap = new LinkedHashMap<>();
+        //静态资源相关
         filterMap.put("/statics/**", "anon");
         filterMap.put("/swagger/**", "anon");
+        //登录、注册、验证码相关
         filterMap.put("/login.html", "anon");
         filterMap.put("/register.jsp", "anon");
         filterMap.put("/sys/user/register", "anon");
-        filterMap.put("/sms/signalling/receiver", "anon");
         filterMap.put("/sys/login", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/captcha.jpg", "anon");
+        //和信令相关的不要拦截
+        filterMap.put("//sms/signalling/**", "anon");
+        //其他都需要登录
         filterMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
