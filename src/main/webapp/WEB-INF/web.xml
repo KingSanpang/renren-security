@@ -11,6 +11,7 @@
 			classpath:spring-jdbc.xml
 			classpath:spring-redis.xml
 			classpath:spring-scheduler.xml
+			classpath:spring-mq.xml
 		</param-value>
 	</context-param>
 	
