@@ -46,7 +46,7 @@ public class SysUserServiceImpl implements SysUserService {
 	public R register(SysUser user) {
 		SysUser tempUser = this.queryByUserNameAndStatus(user);
 		if(tempUser != null){
-			return R.error(ErrorConstants.USER_ERROR.USERNAME_EXIST_ERROR, "用户名已经存在！");
+			return R.error(ErrorConstants.UserError.USERNAME_EXIST_ERROR, "用户名已经存在！");
 		}
 		user.setCreateTime(new Date());
 		//sha256加密

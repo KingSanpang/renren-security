@@ -3,13 +3,18 @@ package io.renren.modules.sys.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import io.renren.common.constant.CommonConstants;
 import io.renren.common.utils.R;
+import io.renren.common.utils.RedisUtils;
 import io.renren.modules.sys.shiro.ShiroUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -18,6 +23,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisConnectionUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +43,8 @@ import com.google.code.kaptcha.Producer;
 public class SysLoginController {
 	@Autowired
 	private Producer producer;
+	@Autowired
+	private RedisUtils redisUtils;
 	
 	@RequestMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response)throws ServletException, IOException {
@@ -80,6 +88,42 @@ public class SysLoginController {
 		}
 	    
 		return R.ok();
+	}
+
+	/**
+	 * 手机端登录
+	 * @param username
+	 * @param password
+	 * @param captcha
+	 * @return
+     * @throws IOException
+     */
+	@ResponseBody
+	@RequestMapping(value = "/sys/mobileLogin", method = RequestMethod.POST)
+	public R mobileLogin(String username, String password)throws IOException {
+		String mobileToken;
+		try{
+			Subject subject = ShiroUtils.getSubject();
+			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			subject.login(token);
+			//登录成功，生成token
+			mobileToken = UUID.randomUUID().toString().replace("-", "");
+			String now = String.valueOf(System.currentTimeMillis());
+			//入redis
+			Map tokenMap = new HashMap();
+			tokenMap.put(CommonConstants.REDIS_KEY_MOBILE_TOKEN_TOKEN, mobileToken);
+			tokenMap.put(CommonConstants.REDIS_KEY_MOBILE_TOKEN_INSERTTIME, now);
+			redisUtils.set(String.format(CommonConstants.REDIS_KEY_MOBILE_TOKEN, username), tokenMap, RedisUtils.NOT_EXPIRE);
+		}catch (UnknownAccountException e) {
+			return R.error(e.getMessage());
+		}catch (IncorrectCredentialsException e) {
+			return R.error("账号或密码不正确");
+		}catch (LockedAccountException e) {
+			return R.error("账号已被锁定,请联系管理员");
+		}catch (AuthenticationException e) {
+			return R.error("账户验证失败");
+		}
+		return R.ok().put(CommonConstants.REDIS_KEY_MOBILE_TOKEN_TOKEN, mobileToken);
 	}
 	
 	/**

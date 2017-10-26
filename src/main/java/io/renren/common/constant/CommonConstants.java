@@ -13,8 +13,13 @@ package io.renren.common.constant;
 public class CommonConstants {
     //redis
     public static final String REDIS_KEY_MENU = "menu_list_%s";//menu_list_menuid
-    //mobile auth
-    public static final String MOBILE_AUTH_HEADER_KEY = "MOBILESIGN";
+    public static final String REDIS_KEY_MOBILE_TOKEN = "mobile_token_%s";//mobile_token_username value={token,insertTime}
+    public static final String REDIS_KEY_MOBILE_TOKEN_TOKEN = "token";
+    public static final String REDIS_KEY_MOBILE_TOKEN_INSERTTIME = "insertTime";
+    //mobile auth key in header
+    public static final String MOBILE_AUTH_HEADER_SIGN = "MOBILESIGN";
+    public static final String MOBILE_AUTH_HEADER_USERID = "USERID";
+    public static final String MOBILE_AUTH_HEADER_TIME = "TIMESTAMP";
 
     public enum STATUS {
         DELETED((byte)-1),//删除

@@ -67,6 +67,7 @@ public class ShiroConfig {
         filterMap.put("/register.jsp", "anon");
         filterMap.put("/sys/user/register", "anon");
         filterMap.put("/sys/login", "anon");
+        filterMap.put("/sys/mobileLogin", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/captcha.jpg", "anon");
         //和信令相关的不要拦截

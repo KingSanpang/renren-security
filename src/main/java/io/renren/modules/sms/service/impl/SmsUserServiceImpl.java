@@ -51,7 +51,7 @@ public class SmsUserServiceImpl implements SmsUserService {
         //查询老板id
         SysUserEntity boss = sysUserService.queryByUserName(rela.getBossTel());
         if(boss == null){
-            return R.error(ErrorConstants.USER_ERROR.USERNAME_NOT_EXIST_ERROR, "老板号不存在！");
+            return R.error(ErrorConstants.UserError.USERNAME_NOT_EXIST_ERROR, "老板号不存在！");
         }
         if(boss.getStatus().equals(CommonConstants.STATUS.NORMAL)){
             return R.error(-1, "已经通过老板审批不能修改。");
